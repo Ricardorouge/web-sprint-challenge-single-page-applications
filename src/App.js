@@ -15,14 +15,12 @@ const App = () => {
   const orderSubmit =(newOrder)=>{
     axios.post('https://reqres.in/api/orders',newOrder)
     .then(res=>{
-      setOrders([...orders,newOrder])
+      // console.log('test',res)
+      setOrders([...orders,res.data])
+      console.log(orders)
     }).catch(err=>{console.error(err)})
     
   }
-
-  useEffect(()=>{
-    console.log(orders)
-  },[orders])
 
   return (
     <div className = 'App'>
