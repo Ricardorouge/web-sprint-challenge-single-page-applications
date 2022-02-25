@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { Route, Link } from "react-router-dom"
 import OrderForm from "./Components/orderForm";
+import axios from 'axios'
 
 
 
@@ -12,7 +13,11 @@ const App = () => {
   
 
   const orderSubmit =(newOrder)=>{
-    setOrders([...orders,newOrder])
+    axios.post('https://reqres.in/api/orders',newOrder)
+    .then(res=>{
+      setOrders([...orders,newOrder])
+    }).catch(err=>{console.error(err)})
+    
   }
 
   useEffect(()=>{
